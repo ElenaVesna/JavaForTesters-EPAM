@@ -1,5 +1,8 @@
 package com.epam.elena_bogomolova.java;
 
+import java.util.function.IntBinaryOperator;
+import java.util.function.IntPredicate;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,8 +11,9 @@ public class Main {
 //        arrayActions.countEvenElements();
 //        arrayActions.replaceNegativeElementsByNumber(0);
 //        arrayActions.increasePositiveAfterNegative(3);
-        arrayActions.differenceMinAverage();
+//        arrayActions.differenceMinAverage();
 //        arrayActions.oddRepeatingElements();
+          arrayActions.replaceElementsByNumberLambda((g) -> (g < 0), 0);
     }
 }
 
@@ -75,6 +79,17 @@ class ArrayProcessing {
         System.out.println("\n array without negative elements:");
         for (int i = 0; i < myArray.length; i++) {
             if (myArray[i] < 0) {
+                myArray[i] = replacingNumber;
+            }
+        }
+        printArrayElements(myArray);
+    }
+
+    public void replaceElementsByNumberLambda(IntPredicate predicate, int replacingNumber) {
+        int[] myArray = new ArrayProcessing().createArray(20, -10, 10);
+        System.out.println("\n array without negative elements:");
+        for (int i = 0; i < myArray.length; i++) {
+            if (predicate.test(myArray[i])) {
                 myArray[i] = replacingNumber;
             }
         }
