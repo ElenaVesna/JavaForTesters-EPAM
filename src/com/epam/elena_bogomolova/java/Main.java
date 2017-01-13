@@ -8,18 +8,18 @@ public class Main {
 //        arrayActions.countEvenElements();
 //        arrayActions.replaceNegativeElementsByNumber(0);
 //        arrayActions.increasePositiveAfterNegative(3);
-//        arrayActions.differenceMinAverage();
+        arrayActions.differenceMinAverage();
 //        arrayActions.oddRepeatingElements();
     }
 }
 
 class ArrayProcessing {
-    public int[] createArray(int length) {
+    public int[] createArray(int length, int minElement, int maxElement) {
         System.out.println("initial array with " + length + " integer numbers:");
         int[] myArray = new int[length];
 //        generate data
         for (int i = 0; i < myArray.length; i++) {
-            myArray[i] = (int) (Math.random()*(length + 1) - 10);
+            myArray[i] = (int) (minElement + Math.random()*(maxElement - minElement + 1));
         }
         printArrayElements(myArray);
         return myArray;
@@ -33,7 +33,7 @@ class ArrayProcessing {
     }
 //     task 1.1
     public void switchPlacesMaxMinusMinPlus() {
-        int[] myArray = new ArrayProcessing().createArray(20);
+        int[] myArray = new ArrayProcessing().createArray(20, -10, 10);
         int maxMinus = myArray[0];
         int positionMaxMinus = 0;
         int minPlus = myArray[0];
@@ -61,7 +61,7 @@ class ArrayProcessing {
 
 //     task 1.2
     public void countEvenElements(){
-        int[] myArray = new ArrayProcessing().createArray(20);
+        int[] myArray = new ArrayProcessing().createArray(20, -10, 10);
         int sumEvenElenemts = 0;
         for (int i = 1; i < myArray.length; i += 2) {
             sumEvenElenemts += myArray[i];
@@ -71,7 +71,7 @@ class ArrayProcessing {
 
 //    task 1.3
     public void replaceNegativeElementsByNumber(int replacingNumber) {
-        int[] myArray = new ArrayProcessing().createArray(20);
+        int[] myArray = new ArrayProcessing().createArray(20, -10, 10);
         System.out.println("\n array without negative elements:");
         for (int i = 0; i < myArray.length; i++) {
             if (myArray[i] < 0) {
@@ -83,7 +83,7 @@ class ArrayProcessing {
 
 //    task 1.4
     public void increasePositiveAfterNegative(int multiplier) {
-        int[] array = new ArrayProcessing().createArray(20);
+        int[] array = new ArrayProcessing().createArray(20, -10, 10);
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] < 0 && array[i+1] > 0) {
                 array[i+1] *= multiplier;
@@ -95,7 +95,7 @@ class ArrayProcessing {
 
 //    task 1.5
     public void differenceMinAverage() {
-        int[] array = new ArrayProcessing().createArray(20);
+        int[] array = new ArrayProcessing().createArray(20, -10, 10);
         int minimum = array[0];
         int sum = 0;
         for (int i = 1; i < array.length; i++) {
@@ -104,14 +104,14 @@ class ArrayProcessing {
                 minimum = array[i];
             }
         }
-        int average = sum/array.length;
+        float average = (float)sum/array.length;
         System.out.println("minimum element in array: " + minimum + ", average: " + average);
-        System.out.println("their difference: " + (average - Math.abs(minimum)));
+        System.out.println("their difference: " + Math.abs((average - minimum)));
     }
 
 //    task 1.6
     public void oddRepeatingElements() {
-        int[] array = new ArrayProcessing().createArray(20);
+        int[] array = new ArrayProcessing().createArray(20, -10, 10);
         for (int i = 0; i < array.length; i++) {
 
         }
